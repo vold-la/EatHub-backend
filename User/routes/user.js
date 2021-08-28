@@ -4,6 +4,7 @@ const {
   addAddress,
   addPhonenumber,
   getOrderId,
+  captureCod,
   capturePayment,
 } = require("../controller/userController");
 const router = express.Router();
@@ -13,5 +14,6 @@ router.post("/addAddress", addAddress);
 router.post("/addPhonenumber", addPhonenumber);
 router.get("/orderId", getOrderId);
 router.post("/capture/:paymentId", capturePayment);
+router.post("/captureCod", captureCod);
 
 module.exports = router;

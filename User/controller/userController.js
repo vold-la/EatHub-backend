@@ -124,10 +124,34 @@ const capturePayment = async (req, res) => {
   }
 };
 
+const captureCod = async (req, res) => {
+	try{
+        let user = await User.findOne({ id: req.body.userId });
+        let timeStamp = new Date();
+        if (user) {
+          user.orders.push({
+            totalOrder: [...req.body.order],
+            timeStamp: timeStamp,
+            orderId: req.body.order_id,
+            restaurantDetails: req.body.restaurantDetails,
+          });
+          await user.save();
+		  return res.json({ err: false, message: "Success"});
+		}
+       else {
+      return res.status(404).json({ err: true, message: "Invalid user Id" });
+	   }
+	} catch (err) {
+    return res.status(500).json({ err: true, message: "Something went wrong" });
+	}
+};
+
+
 module.exports = {
   getUser,
   addAddress,
   addPhonenumber,
   getOrderId,
+  captureCod,
   capturePayment,
 };
