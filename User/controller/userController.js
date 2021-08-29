@@ -29,7 +29,7 @@ const getUser = async (req, res) => {
 
 
 const getUserByPhone = async (req, res) => {
-  const { phone } = req.query;
+  const { phone } = req.body.phone;
 
   try {
     let user = await User.findOne({ phone: phone });
@@ -45,7 +45,7 @@ const getUserByPhone = async (req, res) => {
 };
 
 const getUserByEmail = async (req, res) => {
-  const { email } = req.query;
+  const { email } = req.body.email;
 
   try {
     let user = await User.findOne({ email: email });
