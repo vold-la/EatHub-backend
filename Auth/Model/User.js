@@ -16,7 +16,7 @@ const userSchema = new Schema({
     unique: true,
   },
   phone: {
-    type: Number,
+    type: String,
   },
   address: {
     type: Array,
@@ -28,7 +28,7 @@ const userSchema = new Schema({
   },
   image: {
     type: String,
-    default: "https://img.icons8.com/color/2x/spyro.png",
+    default: "https://img.icons8.com/color/48/000000/matcha.png",
   },
 });
 
