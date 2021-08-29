@@ -5,6 +5,7 @@ const {
   login,
   verifyLoginOtp,
   googleRegister,
+  registerPhone,
   googleLogin,
 } = require("../Controller/authController");
 const {
@@ -18,6 +19,7 @@ router.post("/login", loginValidator, login);
 router.post("/verifyRegister", verifyRegisterOtp);
 router.post("/verifyLogin", verifyLoginOtp);
 router.post("/googleRegister", registerValidator, googleRegister);
+router.post("/registerPhone", registerValidator, registerPhone);
 router.post("/googleLogin", loginValidator, googleLogin);
 
 module.exports = router;

@@ -27,6 +27,40 @@ const getUser = async (req, res) => {
   }
 };
 
+
+const getUserByPhone = async (req, res) => {
+  const { phone } = req.query;
+
+  try {
+    let user = await User.findOne({ phone: phone });
+    if (user) {
+      return res.json({ err: false, message: "Success", user: user });
+    } else {
+      return res.status(404).json({ err: true, message: "Invalid user Id" });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ err: true, message: "Something went wrong" });
+  }
+};
+
+const getUserByEmail = async (req, res) => {
+  const { email } = req.query;
+
+  try {
+    let user = await User.findOne({ email: email });
+    if (user) {
+      return res.json({ err: false, message: "Success", user: user });
+    } else {
+      return res.status(404).json({ err: true, message: "Invalid user Id" });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ err: true, message: "Something went wrong" });
+  }
+};
+
+
 const addAddress = async (req, res) => {
   const { id, address, type } = req.body;
   try {
@@ -149,6 +183,8 @@ const captureCod = async (req, res) => {
 
 module.exports = {
   getUser,
+  getUserByEmail,
+  getUserByPhone,
   addAddress,
   addPhonenumber,
   getOrderId,

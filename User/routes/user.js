@@ -1,6 +1,8 @@
 const express = require("express");
 const {
   getUser,
+  getUserByEmail,
+  getUserByPhone,
   addAddress,
   addPhonenumber,
   getOrderId,
@@ -15,5 +17,7 @@ router.post("/addPhonenumber", addPhonenumber);
 router.get("/orderId", getOrderId);
 router.post("/capture/:paymentId", capturePayment);
 router.post("/captureCod", captureCod);
+router.post("/getUserByEmail", getUserByEmail);
+router.post("/getUserByPhone", getUserByPhone);
 
 module.exports = router;

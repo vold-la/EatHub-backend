@@ -160,6 +160,37 @@ const verifyLoginOtp = async (req, res) => {
   }
 };
 
+const registerPhone = async (req, res) => {
+  const errors = validateBody(req);
+  if (!errors.isEmpty()) {
+    const { err, message } = errors.array({ onlyFirstError: true })[0];
+    return res.status(422).json({ err, message });
+  } else {
+    const { name, email, phone, id } = req.body;
+
+    let user = await User.findOne({ phone: phone });
+
+    if (user) {
+      return res
+        .status(422)
+        .json({ err: true, message: "You are already registered !" });
+    } else {
+      let newUser = new User({
+        name: name,
+        email: email,
+        id: id,
+        phone: phone,
+      });
+      await newUser.save();
+      return res.json({
+        err: false,
+        message: `User registered successfully`,
+      });
+    }
+  }
+};
+
+
 const googleRegister = async (req, res) => {
   const errors = validateBody(req);
   if (!errors.isEmpty()) {
@@ -219,5 +250,6 @@ module.exports = {
   login,
   verifyLoginOtp,
   googleRegister,
+  registerPhone,
   googleLogin,
 };
