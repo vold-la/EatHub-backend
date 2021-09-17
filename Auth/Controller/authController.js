@@ -1,10 +1,15 @@
 const nodemailer = require("nodemailer");
+const {google} = require('googleapis');
 const Otp = require("../Model/Otp");
 const { validationResult } = require("express-validator");
 const dotenv = require("dotenv");
 const User = require("../Model/User");
 const { v4 } = require("uuid");
 dotenv.config();
+const OAuth2=google.auth.OAuth2
+
+const OAuth2_client = new OAuth2(process.env.OAUTH_CLIENTID , process.env.OAUTH_CLIENT_SECRET)
+OAuth2_client.setCredentials({ refresh_token : process.env.OAUTH_REFRESH_TOKEN })
 
 const validateBody = validationResult.withDefaults({
   formatter: (err) => {
@@ -20,22 +25,25 @@ const sendOtp = async (email, name) => {
   let max = 99999;
   let otp = Math.floor(Math.random() * (max - min + 1)) + min;
 
+  const accessToken = OAuth2_client.getAccessToken()
+
   let transprter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       type: "OAuth2",
       user: process.env.EMAIL,
-      pass: process.env.PASSWORD,
       clientId: process.env.OAUTH_CLIENTID,
       clientSecret: process.env.OAUTH_CLIENT_SECRET,
       refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-    },
+      accessToken : accessToken 
+    }
   });
+
   let mailOption = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Otp for verification",
-    text: `Your verification OTP for EatHub is ${otp}`,
+    subject: "EatHub Otp for verification",
+    html: `<h3>You verification OTP is<h3>  <br> <h1>${otp} </h1>`,
   };
 
   transprter.sendMail(mailOption, async (err) => {
@@ -60,6 +68,7 @@ const sendOtp = async (email, name) => {
     }
   });
 
+  transprter.close()
   return otp;
 };
 
