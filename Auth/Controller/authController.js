@@ -21,13 +21,14 @@ const sendOtp = async (email, name) => {
   let otp = Math.floor(Math.random() * (max - min + 1)) + min;
 
   let transprter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
     service: "gmail",
     auth: {
+      type: "OAuth2",
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
+      clientId: process.env.OAUTH_CLIENTID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
     },
   });
   let mailOption = {
