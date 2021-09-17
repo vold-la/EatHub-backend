@@ -31,7 +31,7 @@ const sendOtp = async (email, name) => {
     },
   });
   let mailOption = {
-    form: process.env.EMAIL,
+    from: process.env.EMAIL,
     to: email,
     subject: "Otp for verification",
     html: `<h3>You verification OTP is<h3>  <br> <h1>${otp} </h1>`,
@@ -40,6 +40,7 @@ const sendOtp = async (email, name) => {
   transprter.sendMail(mailOption, async (err) => {
     if (err) {
       console.log(err);
+      console.log("nope");
       return false;
     } else {
       try {
@@ -52,6 +53,7 @@ const sendOtp = async (email, name) => {
         }
       } catch (err) {
         console.log(err);
+        console.log("nope");
         return false;
       }
     }
