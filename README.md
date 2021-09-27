@@ -6,30 +6,30 @@ Note -- this is in active development
 - Search     --to get cityid , restaurant detail , collections .
 - Auth       --authenticating user & sending otp. 
 
-[Live Link] (https://eathub-nbackend.herokuapp.com)
+[Live Link](https://eathub-nbackend.herokuapp.com)
 
 #### Screenshots
 
 <table>
   <tr>
-    <td>Current Architecture<img src="./pics/current.png" height=300 ></td>
+    <td>Current Architecture<img src="./pics/current.png" height=300 width=900 ></td>
   </tr>
-  <tr align=center><p>
-  |
-  |
-  |
-  |
-  |
-  |
-  </p></tr>
+  <tr><td>
+			| <br />
+			| <br />
+			| <br />
+			| <br />
+			| <br />
+			| <br />
+  </td></tr>
   <tr>
-   <td>Aimed Architecture<img src="./pics/final.png" height=250></td>
+   <td>Aimed Architecture<img src="./pics/final.png" height=300 width=900></td>
   </tr>
 </table>
 
 <hr/>
 
-## Built With
+### `Built With`
 
 <table  align=center>
   <tr>
@@ -52,10 +52,11 @@ Note -- this is in active development
 
 
 ### `Ongoing development`
-jwt for securing routes, csurf token to prevent csrf.
+- jwt for securing routes 
+- csurf token to prevent csrf.
 
 ## Show your support
 
-Give a star∏è if you like this project! <br />
+Give a star, if you like this project! <br />
 Contributions & feedbacks are welcome!
 
