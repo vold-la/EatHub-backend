@@ -14,13 +14,14 @@ Note -- this is in active development
   <tr>
     <td>Current Architecture<img src="./pics/current.png" height=300 width=900 ></td>
   </tr>
-  <tr><td>
+  <tr><td align=center>
 			| <br />
 			| <br />
 			| <br />
 			| <br />
 			| <br />
 			| <br />
+		   \/ <br />
   </td></tr>
   <tr>
    <td>Aimed Architecture<img src="./pics/final.png" height=300 width=900></td>
